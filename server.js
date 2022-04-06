@@ -17,7 +17,6 @@ try {
   process.exit(1);
 }
 
-
 // Init Middleware
 app.use(express.json());
 
