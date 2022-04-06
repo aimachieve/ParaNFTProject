@@ -11,19 +11,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mr-new-0509/neurality-nft-mint.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mr-new-0509/neurality-nft-mint/issues"
-  },
-  "homepage": "https://github.com/mr-new-0509/neurality-nft-mint#readme",
   "dependencies": {
-    "@mui/material": "^4.12.4",
     "axios": "^0.26.0",
     "config": "^3.3.7",
     "dotenv": "^16.0.0",
