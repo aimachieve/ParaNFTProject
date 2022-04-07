@@ -12,7 +12,7 @@ const RootStyle = styled('div')(({ theme }) => ({
   // backgroundColor: '#091c52',
   color: '#ffffff',
   backgroundRepeat: 'no-repeat',
-  backgroundSize: 'contain'
+  backgroundSize: 'cover'
 }));
 
 const ContentStyle = styled('div')(({ theme }) => ({
