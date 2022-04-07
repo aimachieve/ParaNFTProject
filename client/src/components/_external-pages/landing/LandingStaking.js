@@ -41,7 +41,9 @@ export default function LandingStaking() {
             }}>
               COMING SOON...
             </Typography>
-            <Button sx={{
+            <Button
+              href="https://para.global"
+            sx={{
                 width: { xs: '180px', md: '315px' },
                 height: { xs: '30px', md: '63px' },
                 fontSize: { xs: '18px', md: '36px' },

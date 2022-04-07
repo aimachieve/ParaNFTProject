@@ -16,7 +16,7 @@ import useWhitelist from '../../../hooks/useWhitelist';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
-  margin: theme.spacing(14, 0, 0, 0),
+  margin: theme.spacing(3, 0, 0, 0),
   background: 'url(/assets/para/camp.jpg)',
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover'

@@ -102,7 +102,7 @@ export default function LandingPreppers() {
         >
           <Grid item xs={6} md={6}>
             <MotionInView variants={varFadeInUp}>
-              <Stack spacing={{ xs: 1, md: 3 }} alignItems="center" justifyContent={'center'} sx={{ marginTop: '20%' }}>
+              <Stack spacing={{ xs: 1, md: 9 }} alignItems="center" justifyContent={'center'} sx={{ marginTop: '30%' }}>
                 <img src="/assets/para/preppers_logo.png" alt='preppers_logo' />
                 <Button
                   sx={{
@@ -146,7 +146,7 @@ export default function LandingPreppers() {
             </MotionInView>
           </Grid>
           <Grid item xs={6} md={6}>
-            <img src="/assets/para/prepper_one.png" alt="prepper_one" style={{ height: '80%' }} />
+            <img src="/assets/para/prepper_one.png" alt="prepper_one" style={{ height: '80%', marginTop: '10%' }} />
           </Grid>
         </Grid>
       </Container>
