@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 // material
 import { styled, useTheme } from '@mui/material/styles';
 import { Stack, Container, Typography, Button, useMediaQuery } from '@mui/material';
@@ -29,7 +30,23 @@ export default function LandingMint() {
   const { mintAvailableWhitelist } = useWhitelist();
   const { chainId, ethereum } = useMetaMask();
   const { openAlert } = useAlertMessage();
+  const [totalSupply, setTotalSupply] = useState(0)
 
+  useEffect(() => {
+    const init = async () => {
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        // console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
+        const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+        const { _hex } = await contract.totalSupply();
+        console.log("totalSupply=>", Number(_hex))
+        setTotalSupply(Number(_hex))
+      }
+    }
+
+    init()
+  }, []);
 
   const handleMint = async () => {
     try {
@@ -113,14 +130,15 @@ export default function LandingMint() {
               disabled={mintAvailableWhitelist ? false : true}
             >
               {
-                walletConnected ?
-                  mintAvailableWhitelist ?
+                mintAvailableWhitelist ?
+                  walletConnected ?
                     'MINT' :
-                    'ENDED!' :
-                  'Connect '
+                    'CONNECT' :
+                  'ENDED!'
               }
             </Button>
             <Button
+              href="https://discord.gg/paratoken"
               sx={{
                 width: { xs: '150px', md: '393px' },
                 height: { xs: '30px', md: '78px' },
@@ -143,6 +161,17 @@ export default function LandingMint() {
               DISCORD
             </Button>
           </Stack>
+        </MotionInView>
+        <MotionInView variants={varFadeInUp}>
+          <Typography sx={{
+            color: '#d4e611',
+            fontStyle: 'italic',
+            fontWeight: 'bold',
+            fontFamily: "'Michroma', sans-serif",
+            fontSize: { xs: '25px', md: '55px' },
+          }}>
+            {totalSupply} / 3000
+          </Typography>
         </MotionInView>
       </Stack>
     </RootStyle >

@@ -1,6 +1,7 @@
+import { useState, useEffect } from 'react'
 // material
 import { styled, useTheme } from '@mui/material/styles';
-import { Stack, Container, Grid, Button, useMediaQuery } from '@mui/material';
+import { Stack, Container, Grid, Button, useMediaQuery, Typography } from '@mui/material';
 import { ethers } from "ethers";
 import { useMetaMask } from 'metamask-react';
 
@@ -29,6 +30,23 @@ export default function LandingPreppers() {
   const { openAlert } = useAlertMessage();
   const { mintAvailableWhitelist } = useWhitelist();
   const { currentAccount, connectWallet, walletConnected, registerAvailableWhitelist } = useWallet();
+  const [totalSupply, setTotalSupply] = useState(0)
+
+  useEffect(() => {
+    const init = async () => {
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        // console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
+        const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+        const { _hex } = await contract.totalSupply();
+        console.log("totalSupply=>", Number(_hex))
+        setTotalSupply(Number(_hex))
+      }
+    }
+
+    init()
+  }, []);
 
   const handleMint = async () => {
     try {
@@ -75,7 +93,7 @@ export default function LandingPreppers() {
 
   return (
     <RootStyle
-    id="preppers">
+      id="preppers">
       <Container maxWidth="lg">
         <Grid
           container
@@ -84,7 +102,7 @@ export default function LandingPreppers() {
         >
           <Grid item xs={6} md={6}>
             <MotionInView variants={varFadeInUp}>
-              <Stack spacing={{ xs: 1, md: 10 }} alignItems="center" justifyContent={'center'} sx={{ marginTop: '20%' }}>
+              <Stack spacing={{ xs: 1, md: 3 }} alignItems="center" justifyContent={'center'} sx={{ marginTop: '20%' }}>
                 <img src="/assets/para/preppers_logo.png" alt='preppers_logo' />
                 <Button
                   sx={{
@@ -108,14 +126,22 @@ export default function LandingPreppers() {
                   disabled={mintAvailableWhitelist ? false : true}
                 >
                   {
-                    walletConnected ?
-                      mintAvailableWhitelist ?
+                    mintAvailableWhitelist ?
+                      walletConnected ?
                         'MINT' :
-                        'ENDED!' :
-                      'Connect '
+                        'CONNECT' :
+                      'ENDED!'
                   }
                 </Button>
-
+                <Typography sx={{
+                  color: '#d4e611',
+                  fontStyle: 'italic',
+                  fontWeight: 'bold',
+                  fontFamily: "'Michroma', sans-serif",
+                  fontSize: { xs: '20px', md: '45px' },
+                }}>
+                  {totalSupply} / 3000
+                </Typography>
               </Stack>
             </MotionInView>
           </Grid>

@@ -256,7 +256,7 @@ export default function MenuDesktop({ isOffset, isHome, navConfig, connectWallet
         target="_blank"
       >
         <img src="/assets/para/descord.webp" alt="discord" style={{
-          marginRight: '30px',
+          marginRight: '20px',
           width: '25px',
           height: '20px'
         }} />
@@ -266,8 +266,18 @@ export default function MenuDesktop({ isOffset, isHome, navConfig, connectWallet
         target="_blank"
       >
         <img src="/assets/para/twitter.webp" alt="twitter" style={{
+          marginRight: '20px',
           width: '25px',
           height: '20px'
+        }} />
+      </Link>
+      <Link
+        href="https://t.me/ParaHoldings"
+        target="_blank"
+      >
+        <img src="/assets/para/telegram.png" alt="telegram" style={{
+          width: '28px',
+          height: '28px'
         }} />
       </Link>
 
@@ -284,7 +294,7 @@ export default function MenuDesktop({ isOffset, isHome, navConfig, connectWallet
           height: '34px',
           borderRadius: '17px',
           filter: 'drop-shadow(0px 10px 30px rgba(2,3,2,0.94))',
-          marginLeft: 7,
+          marginLeft: 5,
           "&:hover": {
             color: 'white',
             backgroundColor: '#d4e611'
