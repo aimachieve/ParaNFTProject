@@ -19,7 +19,7 @@ const RootStyle = styled('div')(({ theme }) => ({
   margin: theme.spacing(14, 0, 0, 0),
   background: 'url(/assets/para/camp.jpg)',
   backgroundRepeat: 'no-repeat',
-  backgroundSize: 'contain'
+  backgroundSize: 'cover'
 }));
 // ----------------------------------------------------------------------
 
