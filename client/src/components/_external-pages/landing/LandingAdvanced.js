@@ -54,7 +54,7 @@ export default function LandingAdvanced() {
                   fontFamily: "Roboto",
                   textAlign: 'center',
                 }}>
-                  Para Holdings Inc in conjunction with CryptoFlow101 is proud to present their first release of 3,000 PARA PREPPERS Generative NFT collection.
+                  Para Holdings Inc is proud to present their first release of 3,000 PARA PREPPERS Generative NFT collection.
                   <br />
                   With each purchase from the NFT collection, you will be making an investment into the company with profits going back into $Para to help fund marketing and development.
                 </Typography>
