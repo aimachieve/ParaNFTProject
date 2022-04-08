@@ -203,19 +203,25 @@ exports.checkAddressIsWhitelisted = async (req, res) => {
 //  Get hex proof of the address
 exports.getHexProof = async (req, res) => {
   const { address, whitelistId } = req.body;
+  console.log(address, whitelistId)
 
   try {
     const results = await db.query(`SELECT address FROM whitelisted_addresses WHERE id_whitelist = ${whitelistId}`);
+
     if (results.length == 0) {
       return res.status(500).send(NO_DATA);
     } else {
       const addresses = results.map(resultItem => resultItem.address);
+
       const leafNodes = addresses.map(addr => keccak256(addr));
+      console.log("leafNodes=>", leafNodes)
       const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
-      console.log('# address: ', address);
-      console.log('# merkleTree: ', merkleTree.toString());
+
+      // console.log('# address: ', address);
+      // console.log('# merkleTree: ', merkleTree.toString());
 
       const hexProof = merkleTree.getHexProof(keccak256(address));
+      console.log(hexProof)
 
       return res.status(200).send(hexProof);
     }

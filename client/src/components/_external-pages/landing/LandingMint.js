@@ -62,6 +62,7 @@ export default function LandingMint() {
               address: currentAccount,
               whitelistId: mintAvailableWhitelist.id_whitelist
             })).data;
+            console.log("hexproof=>", hexProof)
 
             //  Whitelist 1
             if (mintAvailableWhitelist.id_whitelist === 1) {

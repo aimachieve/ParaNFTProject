@@ -62,6 +62,7 @@ export default function LandingPreppers() {
               address: currentAccount,
               whitelistId: mintAvailableWhitelist.id_whitelist
             })).data;
+            console.log('hexProof=>', hexProof, currentAccount, mintAvailableWhitelist.id_whitelist)
 
             //  Whitelist 1
             if (mintAvailableWhitelist.id_whitelist === 1) {
