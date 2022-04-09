@@ -31,8 +31,8 @@ export default function LandingPreppers() {
   const { mintAvailableWhitelist } = useWhitelist();
   const { currentAccount, connectWallet, walletConnected, registerAvailableWhitelist } = useWallet();
   const [totalSupply, setTotalSupply] = useState(0)
-
-  useEffect(() => {
+ 
+  useEffect(() => { 
     const init = async () => {
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
