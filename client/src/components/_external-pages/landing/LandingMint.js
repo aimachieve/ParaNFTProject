@@ -34,17 +34,6 @@ export default function LandingMint() {
 
   useEffect(() => {
     const init = async () => {
-<<<<<<< HEAD
-	if(ethereum) {
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
-      // console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
-      const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
-      const { _hex } = await contract.totalSupply();
-      console.log("totalSupply=>", Number(_hex))
-      setTotalSupply(Number(_hex))
-	}
-=======
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
@@ -54,7 +43,6 @@ export default function LandingMint() {
         console.log("totalSupply=>", Number(_hex))
         setTotalSupply(Number(_hex))
       }
->>>>>>> 8896b62202734525f9c0b9b73fad7f5671ccdf01
     }
 
     init()
