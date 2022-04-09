@@ -46,7 +46,7 @@ export default function LandingPreppers() {
     }
 
     init()
-  });
+  }); 
 
   const handleMint = async () => {
     try {
