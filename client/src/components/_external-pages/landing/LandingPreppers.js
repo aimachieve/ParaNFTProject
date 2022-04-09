@@ -39,14 +39,14 @@ export default function LandingPreppers() {
         const signer = provider.getSigner();
         // console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
         const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
-        const { _hex } = await contract.totalSupply();
+        const {_hex} = await contract.totalSupply();
         console.log("totalSupply=>", Number(_hex))
         setTotalSupply(Number(_hex))
       }
     }
 
     init()
-  }, []);
+  });
 
   const handleMint = async () => {
     try {
@@ -103,7 +103,7 @@ export default function LandingPreppers() {
         >
           <Grid item xs={6} md={6}>
             <MotionInView variants={varFadeInUp}>
-              <Stack spacing={{ xs: 1, md: 9 }} alignItems="center" justifyContent={'center'} sx={{ marginTop: '30%' }}>
+              <Stack spacing={{ xs: 2, md: 9 }} alignItems="center" justifyContent={'center'} sx={{ marginTop: '30%' }}>
                 <img src="/assets/para/preppers_logo.png" alt='preppers_logo' />
                 <Button
                   sx={{
