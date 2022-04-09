@@ -34,6 +34,7 @@ export default function LandingMint() {
 
   useEffect(() => {
     const init = async () => {
+	if(ethereum) {
       const provider = new ethers.providers.Web3Provider(ethereum);
       const signer = provider.getSigner();
       // console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
@@ -41,6 +42,7 @@ export default function LandingMint() {
       const { _hex } = await contract.totalSupply();
       console.log("totalSupply=>", Number(_hex))
       setTotalSupply(Number(_hex))
+	}
     }
 
     init()
