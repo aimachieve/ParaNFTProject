@@ -37,10 +37,8 @@ export default function LandingPreppers() {
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
-        // console.log('# process.env.REACT_APP_CONTRACT_ADDRESS: ', process.env.REACT_APP_CONTRACT_ADDRESS);
         const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
         const {_hex} = await contract.totalSupply();
-        console.log("totalSupply=>", Number(_hex))
         setTotalSupply(Number(_hex))
       }
     }
@@ -62,7 +60,6 @@ export default function LandingPreppers() {
               address: currentAccount,
               whitelistId: mintAvailableWhitelist.id_whitelist
             })).data;
-            console.log('hexProof=>', hexProof, currentAccount, mintAvailableWhitelist.id_whitelist)
 
             //  Whitelist 1
             if (mintAvailableWhitelist.id_whitelist === 1) {
@@ -72,11 +69,9 @@ export default function LandingPreppers() {
               transaction = await contract.privateMint(hexProof, { value: ethers.utils.parseEther(String(NFT_PRICE_WH2)) });
             }
           } else {
-            console.log('# public');
             transaction = await contract.publicMint({ value: ethers.utils.parseEther(String(NFT_PRICE_PUBLIC)) });
           }
           await transaction.wait();
-          console.log('# transaction-wait: ', transaction);
 
           openAlert({ severity: 'success', message: 'Minted!' });
         } else {
@@ -86,7 +81,6 @@ export default function LandingPreppers() {
         openAlert({ severity: 'error', message: 'Ethereum object doesn\'t exist' });
       }
     } catch (error) {
-      console.log('# error: ', error.error);
       openAlert({ severity: 'error', message: error.error.message });
     }
   };
