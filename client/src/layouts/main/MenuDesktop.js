@@ -7,7 +7,7 @@ import arrowIosUpwardFill from '@iconify/icons-eva/arrow-ios-upward-fill';
 import arrowIosDownwardFill from '@iconify/icons-eva/arrow-ios-downward-fill';
 // material
 import { styled } from '@mui/material/styles';
-import { Box, Link, Grid, List, Stack, Popover, ListItem, ListSubheader, CardActionArea, Button } from '@mui/material';
+import { Box, Link, Grid, List, Stack, Popover, ListItem, ListSubheader, CardActionArea, Button, Modal } from '@mui/material';
 import useWallet from '../../hooks/useWallet';
 import metamaskImage from './img/metamask.png'
 import trustwalletImage from './img/coinbaseWalletIcon.svg'
@@ -231,20 +231,23 @@ MenuDesktop.propTypes = {
 export default function MenuDesktop({ isOffset, isHome, navConfig, connectWallet }) {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const [walletAddress, setWalletAddress] = useState("");
   const { activate, account, connector, ...props } = useWeb3React();
   console.log("account=>", account)
+
   const connect = async (type) => {
-      if (type === 'injected') {
-        activate(injected)
-      }
-      if (type === 'walletconnect') {
-        activate(walletconnect)
-      }
-      if (type === 'walletlink') {
-        activate(walletlink)
-      }
+    if (type === 'injected') {
+      activate(injected)
+    }
+    if (type === 'walletconnect') {
+      activate(walletconnect)
+    }
+    if (type === 'walletlink') {
+      activate(walletlink)
+    }
   };
+
   useEffect(() => {
     if (open) {
       handleClose();
@@ -322,11 +325,11 @@ export default function MenuDesktop({ isOffset, isHome, navConfig, connectWallet
             backgroundColor: '#d4e611'
           }
         }}
-        data-toggle="modal" data-target="#myModal"
-        // onClick={connectWallet}
+        // data-toggle="modal" data-target="#myModal"
+        onClick={() => setOpenModal(true)}
       >
         {
-          account&&account.length > 0 ? (
+          account && account.length > 0 ? (
             String(account).substring(0, 6) +
             '...' +
             String(account).substring(38)
@@ -335,43 +338,51 @@ export default function MenuDesktop({ isOffset, isHome, navConfig, connectWallet
           )
         }
       </Button>
-      <div className="modal fade" id="myModal">
-        <div className="modal-dialog modal-sm">
-          <div className="modal-content bg-dark text-white">
 
-            <div className="modal-header border-0">
-              <h6 className="modal-title">Connect Wallet</h6>
-              <button type="button" className="close text-white" data-dismiss="modal">&times;</button>
-            </div>
-            <div className="modal-body">
-              <div
-                className='p-2 border border-info rounded-xl border-width-3 cursor-pointer mb-2'
-                onClick={() => connect('injected')}
-                data-dismiss="modal" style={{cursor:'pointer',display: 'flex'}}
-              >
-                <img alt='SETIMAGE' src={metamaskImage} width='40' height='40' className='img-fluid ml-3'/>
-                <span className='ml-3' style={{top:'8px',position:'relative'}}>Metamask</span>
+      <Modal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="modal fade" id="myModal">
+          <div className="modal-dialog modal-sm">
+            <div className="modal-content bg-dark text-white">
+
+              <div className="modal-header border-0">
+                <h6 className="modal-title">Connect Wallet</h6>
+                <button type="button" className="close text-white" data-dismiss="modal">&times;</button>
               </div>
-              <div
-                className='p-2 border border-info rounded-xl border-width-3 cursor-pointer mb-2'
-                onClick={() => connect('walletconnect')}
-                data-dismiss="modal"  style={{cursor:'pointer',display: 'flex'}}
-              >
-                <img alt='SETIMAGE' src={walletconnectImage} width='40' height='40' className='img-fluid ml-3' />
-                <span className='ml-3' style={{top:'8px',position:'relative'}}>WalletConnect</span>
-              </div>
-              <div
-                className='p-2 border border-info rounded-xl border-width-3 cursor-pointer mb-2'
-                onClick={() => connect('walletlink')}
-                data-dismiss="modal" style={{cursor:'pointer',display: 'flex'}}
-              >
-                <img alt='SETIMAGE' src={trustwalletImage} width='40' height='40' className='img-fluid ml-3' />
-                <span className='ml-3' style={{top:'8px',position:'relative'}}>Coinbase Wallet</span>
+              <div className="modal-body">
+                <div
+                  className='p-2 border border-info rounded-xl border-width-3 cursor-pointer mb-2'
+                  onClick={() => connect('injected')}
+                  data-dismiss="modal" style={{ cursor: 'pointer', display: 'flex' }}
+                >
+                  <img alt='SETIMAGE' src={metamaskImage} width='40' height='40' className='img-fluid ml-3' />
+                  <span className='ml-3' style={{ top: '8px', position: 'relative' }}>Metamask</span>
+                </div>
+                <div
+                  className='p-2 border border-info rounded-xl border-width-3 cursor-pointer mb-2'
+                  onClick={() => connect('walletconnect')}
+                  data-dismiss="modal" style={{ cursor: 'pointer', display: 'flex' }}
+                >
+                  <img alt='SETIMAGE' src={walletconnectImage} width='40' height='40' className='img-fluid ml-3' />
+                  <span className='ml-3' style={{ top: '8px', position: 'relative' }}>WalletConnect</span>
+                </div>
+                <div
+                  className='p-2 border border-info rounded-xl border-width-3 cursor-pointer mb-2'
+                  onClick={() => connect('walletlink')}
+                  data-dismiss="modal" style={{ cursor: 'pointer', display: 'flex' }}
+                >
+                  <img alt='SETIMAGE' src={trustwalletImage} width='40' height='40' className='img-fluid ml-3' />
+                  <span className='ml-3' style={{ top: '8px', position: 'relative' }}>Coinbase Wallet</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </Modal>
     </Stack>
   );
 }
