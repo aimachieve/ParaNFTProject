@@ -345,7 +345,17 @@ export default function MenuDesktop({ isOffset, isHome, navConfig, connectWallet
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div className="modal fade" id="myModal">
+        <div className="modal fade" style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 400,
+          bgcolor: 'background.paper',
+          border: '2px solid #000',
+          boxShadow: 24,
+          p: 4,
+        }}>
           <div className="modal-dialog modal-sm">
             <div className="modal-content bg-dark text-white">
 
