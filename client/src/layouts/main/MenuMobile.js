@@ -15,6 +15,17 @@ import Scrollbar from '../../components/Scrollbar';
 import { MIconButton } from '../../components/@material-extend';
 import menuConfig from './MenuConfig';
 import useWallet from '../../hooks/useWallet';
+import metamaskImage from './img/metamask.png'
+import trustwalletImage from './img/trustwallet.png'
+import walletconnectImage from './img/walletconnect.png'
+import { injected, walletconnect, walletlink } from './connector';
+import { useWeb3React, UnsupportedChainIdError } from '@web3-react/core';
+import {
+  NoEthereumProviderError,
+  UserRejectedRequestError as UserRejectedRequestErrorInjected,
+} from '@web3-react/injected-connector';
+import { UserRejectedRequestError as UserRejectedRequestErrorWalletConnect } from '@web3-react/walletconnect-connector';
+import { NotificationManager } from "react-notifications";
 // Connect wallet
 
 // ----------------------------------------------------------------------
@@ -137,13 +148,24 @@ MenuMobile.propTypes = {
   isHome: PropTypes.bool
 };
 
-export default function MenuMobile({ isOffset, isHome }) {
+export default function MenuMobile({ isOffset, isHome,connectWallet }) {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [walletAddress, setWalletAddress] = useState("");
   const { currentAccount } = useWallet();
-
+  const { activate, connector, ...props } = useWeb3React();
+  const connect = async (type) => {
+    if (type === 'injected') {
+      connectWallet('injected')
+    }
+    if (type === 'walletconnect') {
+      connectWallet('walletconnect')
+    }
+    if (type === 'walletlink') {
+      connectWallet('walletlink')
+    }
+};
   useEffect(() => {
     if (mobileOpen) {
       handleDrawerClose();
@@ -217,9 +239,10 @@ export default function MenuMobile({ isOffset, isHome }) {
                 color: 'white',
                 backgroundColor: '#d4e611'
               }
-            }}>
+            }}
+            data-toggle="modal" data-target="#myModal">
             {
-              currentAccount.length > 0 ? (
+              currentAccount&&currentAccount.length > 0 ? (
                 String(currentAccount).substring(0, 6) +
                 '...' +
                 String(currentAccount).substring(38) +
@@ -229,7 +252,45 @@ export default function MenuMobile({ isOffset, isHome }) {
               )
             }
           </Button>
+          
         </Scrollbar>
+        <div className="modal fade" id="myModal">
+        <div className="modal-dialog modal-sm">
+          <div className="modal-content bg-dark text-white">
+
+            <div className="modal-header border-0">
+              <h6 className="modal-title">Connect Wallet</h6>
+              <button type="button" className="close text-white" data-dismiss="modal">&times;</button>
+            </div>
+            <div className="modal-body">
+              <div
+                className='p-2 border border-info rounded-xl border-width-3 cursor-pointer mb-2'
+                onClick={() => connect('injected')}
+                data-dismiss="modal" style={{cursor:'pointer',display: 'flex'}}
+              >
+                <img alt='SETIMAGE' src={metamaskImage} width='40' height='40' className='img-fluid ml-3'/>
+                <span className='ml-3' style={{top:'8px',position:'relative'}}>Metamask</span>
+              </div>
+              <div
+                className='p-2 border border-info rounded-xl border-width-3 cursor-pointer mb-2'
+                onClick={() => connect('walletconnect')}
+                data-dismiss="modal"  style={{cursor:'pointer',display: 'flex'}}
+              >
+                <img alt='SETIMAGE' src={walletconnectImage} width='40' height='40' className='img-fluid ml-3' />
+                <span className='ml-3' style={{top:'8px',position:'relative'}}>WalletConnect</span>
+              </div>
+              <div
+                className='p-2 border border-info rounded-xl border-width-3 cursor-pointer mb-2'
+                onClick={() => connect('walletlink')}
+                data-dismiss="modal" style={{cursor:'pointer',display: 'flex'}}
+              >
+                <img alt='SETIMAGE' src={trustwalletImage} width='40' height='40' className='img-fluid ml-3' />
+                <span className='ml-3' style={{top:'8px',position:'relative'}}>Coinbase Wallet</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       </Drawer>
     </>
   );

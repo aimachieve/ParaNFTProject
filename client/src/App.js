@@ -7,10 +7,17 @@ import { WhitelistProvider } from './contexts/WhitelistContext';
 import { AdminAuthProvider } from './contexts/AdminAuthContext';
 import Routes from './Router';
 import ThemeConfig from './theme';
-
+import { Web3ReactProvider } from '@web3-react/core';
+import { Web3Provider } from '@ethersproject/providers'
+function getLibrary(provider) {
+  const library = new Web3Provider(provider);
+  library.pollingInterval = 12000;
+  return library;
+}
 export default function App() {
   return (
     <ThemeConfig>
+      <Web3ReactProvider getLibrary={getLibrary}>
       <MetaMaskProvider>
         <AlertMessageProvider>
           <WhitelistProvider>
@@ -24,6 +31,7 @@ export default function App() {
           </WhitelistProvider>
         </AlertMessageProvider>
       </MetaMaskProvider>
+      </Web3ReactProvider>
     </ThemeConfig>
   );
 }
