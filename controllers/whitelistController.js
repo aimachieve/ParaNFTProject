@@ -217,10 +217,11 @@ exports.getHexProof = async (req, res) => {
       console.log("leafNodes=>", leafNodes)
       const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
 
-      // console.log('# address: ', address);
-      // console.log('# merkleTree: ', merkleTree.toString());
+      console.log('# address: ', address);
+      console.log('# merkleTree: ', merkleTree.toString());
 
       const hexProof = merkleTree.getHexProof(keccak256(address));
+      console.log("#hexProof=>", hexProof)
       console.log(hexProof)
 
       return res.status(200).send(hexProof);
