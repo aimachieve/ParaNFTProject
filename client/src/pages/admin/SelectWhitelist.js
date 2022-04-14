@@ -113,11 +113,11 @@ export default function SelectWhitelist() {
                         />
                       ))
                     }
-                    <FormControlLabel
+                    {/* <FormControlLabel
                       control={<Radio />}
                       label="End"
                       value={0}
-                    />
+                    /> */}
                   </RadioGroup>
                 )
               }

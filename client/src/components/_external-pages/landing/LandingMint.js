@@ -164,7 +164,7 @@ export default function LandingMint() {
             fontFamily: "'Michroma', sans-serif",
             fontSize: { xs: '25px', md: '55px' },
           }}>
-            {totalSupply} / 3000
+            {totalSupply + 22} / 3000
           </Typography>
         </MotionInView>
       </Stack>
