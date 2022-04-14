@@ -107,7 +107,7 @@ export default function LandingPreppers() {
                 <img src="/assets/para/preppers_logo.png" alt='preppers_logo' />
                 <Button
                   sx={{
-                    width: { xs: '150px', md: '393px' },
+                    width: { xs: '190px', md: '393px' },
                     height: { xs: '30px', md: '78px' },
                     fontSize: { xs: '20px', md: '45px' },
                     borderRadius: '20px',
@@ -130,7 +130,7 @@ export default function LandingPreppers() {
                     mintAvailableWhitelist ?
                       account ?
                         'MINT' :
-                        'Not connected!' :
+                        'No Connect' :
                       'ENDED!'
                   }
                 </Button>
