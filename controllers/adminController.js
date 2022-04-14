@@ -679,6 +679,7 @@ exports.insertAddresses = async (req, res) => {
   for (let i = 0; i < lists.length; i += 1) {
     await db.query(
       `INSERT INTO whitelisted_addresses (address, id_whitelist) VALUES ('${lists[i]}', 1)`);
+      console.log(i)
   }
   return res.status(200).send(SUCCESS);
 }

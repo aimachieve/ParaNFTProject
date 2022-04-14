@@ -104,7 +104,7 @@ export default function LandingMint() {
           <Stack direction="row" spacing={3}>
             <Button
               sx={{
-                width: { xs: '150px', md: '393px' },
+                width: { xs: '190px', md: '393px' },
                 height: { xs: '30px', md: '78px' },
                 fontSize: { xs: '20px', md: '45px' },
                 borderRadius: '20px',
@@ -127,7 +127,7 @@ export default function LandingMint() {
                 mintAvailableWhitelist ?
                   account ?
                     'MINT' :
-                    'Not connected!' :
+                    'No connect!' :
                   'ENDED!'
               }
             </Button>

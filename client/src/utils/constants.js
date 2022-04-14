@@ -31,7 +31,7 @@ export const CONTRACT_ADDRESS = '0xd913b503f39324541cd21bb19d966a6f73032f81'
 
 export const NFT_PRICE_WH1 = "0.08";
 export const NFT_PRICE_WH2 = "0.08";
-export const NFT_PRICE_PUBLIC = "0.08";
+export const NFT_PRICE_PUBLIC = "0.1";
 /* eslint-disable no-underscore-dangle */
 export const NETWORK_CHAIN_IDS = {
   mainnet: 1,
