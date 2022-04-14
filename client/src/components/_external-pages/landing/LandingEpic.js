@@ -55,10 +55,10 @@ export default function LandingAdvanced() {
                     >
                       EPIC
                     </Typography>
-                    <MHidden width="smDown">
+                    {/* <MHidden width="smDown"> */}
                       <Typography
                         sx={{
-                          fontSize: '16px',
+                          fontSize: {xs: '12px', md: '16px'},
                           letterSpacing: '0px',
                           lineHeight: '27px',
                           color: '#ffffff',
@@ -68,7 +68,7 @@ export default function LandingAdvanced() {
                       >
                         After completing the riggers of advanced training and the ever-constant evading of banjo picking that could never seem to drown out the squealing pigs; the preppers move on to full integration back into the dying society they had left not so long ago. But blending in does not always come so easy; as the Preppers will soon discover their unique set of skills is not usually a welcome addition to high society’s delusions of grandeur. The preppers are now left with the Epic task of fighting in the silent shadows. Surviving in this Pre-apocalyptic world is what legends are made of.
                       </Typography>
-                    </MHidden>
+                    {/* </MHidden> */}
                   </Stack>
                 </MotionInView>
               </Grid>

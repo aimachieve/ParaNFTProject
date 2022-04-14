@@ -37,7 +37,7 @@ export default function LandingAdvanced() {
               sx={{ textAlign: { xs: 'center', md: 'left' } }}
             >
               <Grid item xs={12} md={4}>
-                <img src="/assets/para/rocket.png" alt="rocket" style={{ height: '90%' }} />
+                <img src="/assets/para/rocket.png" alt="rocket" style={{ height: 'auto' }} />
               </Grid>
               <Grid item xs={12} md={8}>
                 <MotionInView variants={varFadeInUp}>
