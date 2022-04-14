@@ -39,14 +39,14 @@ export default function LandingPreppers() {
       // if (ethereum) {
       console.log("ladingpreppers=>")
 
-        // const provider = new ethers.providers.Web3Provider(ethereum);
-        // const signer = provider.getSigner();
-        let provider = ethers.getDefaultProvider();
-        const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider);
-        console.log(contract)
-        const { _hex } = await contract.totalSupply();
-        setTotalSupply(Number(_hex))
-      }
+      // const provider = new ethers.providers.Web3Provider(ethereum);
+      // const signer = provider.getSigner();
+      let provider = ethers.getDefaultProvider();
+      const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, provider);
+      console.log(contract)
+      const { _hex } = await contract.totalSupply();
+      setTotalSupply(Number(_hex))
+    }
     // }
 
     init()
@@ -128,8 +128,9 @@ export default function LandingPreppers() {
                 >
                   {
                     mintAvailableWhitelist ?
-                      account ??
-                      'MINT' :
+                      account ?
+                        'MINT' :
+                        'Not connected!' :
                       'ENDED!'
                   }
                 </Button>
@@ -146,7 +147,7 @@ export default function LandingPreppers() {
             </MotionInView>
           </Grid>
           <Grid item xs={6} md={6}>
-            <img src="/assets/para/prepper_one.png" alt="prepper_one" style={{ height: '80%', marginTop: '10%' }} />
+            <img src="/assets/para/prepper_one.png" alt="prepper_one" style={{ height: {xs: '210px', md: '80%'}, marginTop: '10%' }} />
           </Grid>
         </Grid>
       </Container>

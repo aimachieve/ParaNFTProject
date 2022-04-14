@@ -125,8 +125,9 @@ export default function LandingMint() {
             >
               {
                 mintAvailableWhitelist ?
-                  account ??
-                  'MINT' :
+                  account ?
+                    'MINT' :
+                    'Not connected!' :
                   'ENDED!'
               }
             </Button>
