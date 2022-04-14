@@ -63,7 +63,7 @@ export default function LandingPreppers() {
 
           if (mintAvailableWhitelist?.id_whitelist < 3) {
             const hexProof = (await api.post('/whitelist/getHexProof', {
-              address: currentAccount,
+              address: account,
               whitelistId: mintAvailableWhitelist.id_whitelist
             })).data;
 
