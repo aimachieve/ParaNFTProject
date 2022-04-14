@@ -129,7 +129,7 @@ export default function LandingMint() {
                     'MINT' :
                     'No connect' :
                   'ENDED!'
-              }
+              } 
             </Button>
             <Button
               href="https://discord.gg/paratoken"
