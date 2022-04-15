@@ -141,7 +141,7 @@ export default function LandingPreppers() {
                   fontFamily: "'Michroma', sans-serif",
                   fontSize: { xs: '20px', md: '45px' },
                 }}>
-                  {totalSupply } / 3000
+                  {totalSupply} / 3000
                 </Typography>
               </Stack>
             </MotionInView>
